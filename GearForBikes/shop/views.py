@@ -183,7 +183,7 @@ def order_detail(request, pk):
 
 
 def about(request):
-    return render (request,'shop/about.html' )
+    return render (request,'shop/about.html')
 
 def author(request):
   return render(request, 'shop/author.html')

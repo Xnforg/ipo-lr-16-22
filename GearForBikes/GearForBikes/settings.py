@@ -27,7 +27,7 @@ load_dotenv(BASE_DIR / '.env')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-m6z3wckhi%#ypf=@7pb-#mn3_%+88b^l&a5gu$kxy60h^ni5n(')
 
 # в продакшне (Railway) DEBUG=False, локально — True по умолчанию
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'True') == 'False'
 
 # локально работает через 127.0.0.1, в продакшне добавляется домен Railway
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') + ['.up.railway.app']
