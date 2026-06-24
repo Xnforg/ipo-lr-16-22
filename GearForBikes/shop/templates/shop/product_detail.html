@@ -1,0 +1,73 @@
+{% extends 'shop/base.html' %}
+{% block title %}{{ product.name }} | GearForBikes{% endblock %}
+
+{% block content %}
+
+<!-- хлебные крошки: Главная > Каталог > Название товара -->
+<nav class="breadcrumbs" aria-label="breadcrumb">
+    <a href="{% url 'home' %}">Главная</a>
+    <span>›</span>
+    <a href="{% url 'product_list' %}">Каталог</a>
+    <span>›</span>
+    <span class="current">{{ product.name }}</span>
+</nav>
+
+<div class="product-detail">
+
+    <div class="product-image-section">
+        {% if product.photo %}
+            <img src="{{ product.photo.url }}" class="product-image-large" alt="{{ product.name }}">
+        {% else %}
+            <div style="height:400px;"></div>
+        {% endif %}
+    </div>
+
+    <div class="product-info-section">
+        <div class="product-category">{{ product.category.name }}</div>
+
+        <h1 class="product-title">{{ product.name }}</h1>
+
+        <div class="product-price-large">
+            {{ product.price }} BYN
+        </div>
+
+        <div class="product-description">
+            {{ product.description }}
+        </div>
+
+        <div class="product-specs">
+            <div class="spec-row">
+                <span>Производитель</span>
+                <span>{{ product.manufacturer.name }}</span>
+            </div>
+            <div class="spec-row">
+                <span>Страна</span>
+                <span>{{ product.manufacturer.country }}</span>
+            </div>
+            <div class="spec-row">
+                <span>На складе</span>
+                {% if product.quantities_stock > 0 %}
+                <span>{{ product.quantities_stock }} шт.</span>
+                {% else %}
+                <span class="stock-out">Нет в наличии</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="product-actions-large">
+            <!-- если товара нет на складе — кнопка неактивна и подписана "Нет в наличии" -->
+            {% if product.quantities_stock > 0 %}
+            <button type="button" class="btn" onclick="addToCart({{ product.id }})">
+                Добавить в корзину
+            </button>
+            {% else %}
+            <button type="button" class="btn disabled" disabled>
+                Нет в наличии
+            </button>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

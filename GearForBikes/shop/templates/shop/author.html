@@ -1,0 +1,74 @@
+{% extends 'shop/base.html' %}
+{% block title %}Об авторе | GearForBikes{% endblock %}
+
+{% block content %}
+<style>
+.author-contacts {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.author-contacts h3 {
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-links img {
+    width: 42px;
+    height: 42px;
+    transition: 0.3s;
+}
+
+.social-links img:hover {
+    transform: scale(1.15);
+}
+</style>
+
+<div class="simple-page">
+    <h1>Об авторе</h1>
+
+    <p>Меня зовут Киселёв Артур Дмитриевич, и я — создатель GearForBikes.</p>
+
+    <p>
+        Этот проект был создан из страсти к велокультуре и желания предложить минским 
+        райдерам качественные компоненты и надежные велосипеды. Я лично отбираю 
+        ассортимент — от городских фиксов до технологичных грейвелов, — чтобы каждый 
+        пользователь мог найти именно то, что сделает его поездки быстрее, комфортнее 
+        и стильнее.
+    </p>
+
+    <p>
+        GearForBikes — это не просто интернет-магазин. Это сообщество, где скорость 
+        встречается с надежностью, а каждый байк находит своего владельца. Спасибо, 
+        что выбираете нас для своих велоприключений!
+    </p>
+</div>
+
+<div class="author-contacts">
+    <h3>Связаться со мной</h3>
+
+    <div class="social-links">
+        <!-- Замени ссылки в href на свои актуальные контакты -->
+        <a href="mailto:your-email@example.com" target="_blank">
+            <img src="https://img.icons8.com/fluency/48/mail.png" alt="Почта">
+        </a>
+
+        <a href="https://t.me/your_telegram" target="_blank">
+            <img src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="Telegram">
+        </a>
+
+        <a href="https://www.instagram.com/your_instagram" target="_blank">
+            <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
+        </a>
+
+        <a href="https://github.com/your_github" target="_blank">
+            <img src="https://img.icons8.com/fluency/48/github.png" alt="GitHub">
+        </a>
+    </div>
+</div>
+{% endblock %}

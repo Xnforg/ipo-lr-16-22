@@ -1,0 +1,104 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}GearForBikes{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">GearForBikes</h1>
+        <p class="hero-subtitle">
+            Городские велосипеды, синглспиды, фиксы и грейвелы для тех, кто ценит скорость, свободу и надежное железо
+        </p>
+        <a href="{% url 'product_list' %}" class="btn">
+            Перейти в каталог
+        </a>
+    </div>
+
+    <div class="hero-image-wrapper">
+        <img src="{% static 'images/logo.jpg' %}" 
+             alt="GearForBikes" 
+             class="hero-image">
+    </div>
+</section>
+
+<!-- плитки категорий: небольшие прямоугольники с картинкой, названием и стикером,
+     клик по плитке сразу открывает каталог с фильтром по этой категории -->
+<p class="section-title">Категории</p>
+
+<div class="category-grid">
+    {% for category in categories %}
+    <a href="{% url 'product_list' %}?category={{ category.id }}"
+       class="category-tile"
+       {% if category.image_filename %}style="background-image: url('{% static 'images/' %}{{ category.image_filename }}')"{% endif %}>
+        <span class="category-tile-sticker">Каталог</span>
+        <span class="category-tile-name">{{ category.name }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+<p class="section-title">Популярное</p>
+
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        {% if product.photo %}
+        <img src="{{ product.photo.url }}" class="product-image" alt="{{ product.name }}">
+        {% else %}
+        <div class="product-image"></div>
+        {% endif %}
+
+        <div class="product-info">
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-price">{{ product.price }} BYN</div>
+            <div class="product-actions">
+                <a href="{% url 'product_detail' product.pk %}" class="btn btn-outline btn-sm">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">Товары пока не добавлены</div>
+    {% endfor %}
+</div>
+
+<section class="features">
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <h3>🚚 Доставка по всей Беларуси</h3>
+            <p>Быстрая и аккуратная доставка велосипедов и комплектующих в любой регион страны.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💰 Лучшие цены</h3>
+            <p>Оптимальное соотношение цены и качества компонентов.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚙️ Гарантия качества</h3>
+            <p>Тщательный подбор проверенных брендов и строгий технический контроль железа.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚡ Быстрая обработка заказов</h3>
+            <p>Оперативная обработка и подтверждение каждого заказа менеджером.</p>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="about-store">
+    <h2>О магазине</h2>
+    <p>
+        GearForBikes — современный веломагазин,
+        предлагающий качественные городские велосипеды, кастомные компоненты
+        и стильные аксессуары для ярких моментов ваших поездок.
+    </p>
+    <a href="{% url 'about' %}" class="btn">
+        Подробнее о нас
+    </a>
+</section>
+
+{% endblock %}
