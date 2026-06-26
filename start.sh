@@ -1,4 +1,5 @@
 #!/bin/bash
-cd GearForRide
+cd GearForBikes\GearForBikes
+python manage.py migrate --noinput
 python manage.py collectstatic --noinput
-gunicorn GearForRide.wsgi
+gunicorn GearForBikes.wsgi:application --bind 0.0.0.0:8080
